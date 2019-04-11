@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPong", "PingPong\PingPong.csproj", "{ECCA8144-7EF2-434F-B78E-B681C49925E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPong.Test", "PingPong.Test\PingPong.Test.csproj", "{28B8123E-BA99-41A9-9ECC-505A83102E69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECCA8144-7EF2-434F-B78E-B681C49925E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCA8144-7EF2-434F-B78E-B681C49925E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCA8144-7EF2-434F-B78E-B681C49925E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCA8144-7EF2-434F-B78E-B681C49925E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28B8123E-BA99-41A9-9ECC-505A83102E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28B8123E-BA99-41A9-9ECC-505A83102E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28B8123E-BA99-41A9-9ECC-505A83102E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28B8123E-BA99-41A9-9ECC-505A83102E69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8791A910-97AC-4FE5-9131-FE0236583466}
+	EndGlobalSection
+EndGlobal

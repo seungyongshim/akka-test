@@ -7,6 +7,7 @@ using FluentAssertions;
 using FluentAssertions.Extensions;
 using System.Windows.Input;
 using System;
+using AutoFixture.Kernel;
 
 //https://github.com/AutoFixture/AutoFixture/wiki/Cheat-Sheet
 namespace Mvvm.Test.C
@@ -105,6 +106,9 @@ namespace Mvvm.Test.C
         public void ClickMvvmUsingActor()
         {
             var fixture = new Fixture();
+            fixture.Customizations.Add(
+                new MethodInvoker(
+                new GreedyConstructorQuery()));
             fixture.Register<IActorRefFactory>(() => Sys);
             fixture.Register(() => TestActor);
             var vm = fixture.Create<AkkaViewModel>();

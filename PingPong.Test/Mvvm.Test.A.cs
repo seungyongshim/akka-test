@@ -24,8 +24,6 @@ namespace Mvvm.Test.A
     
     public class AkkaModelViewActor : ReceiveActor
     {
-        private object vm;
-
         public AkkaViewModel ViewModel { get; private set; }
 
         public static Props Props(AkkaViewModel vm) =>

@@ -2,12 +2,14 @@
 using Akka.TestKit.Xunit2;
 using System.ComponentModel;
 using Xunit;
+using AutoFixture;
 using FluentAssertions;
 using FluentAssertions.Extensions;
 using System.Windows.Input;
 using System;
 
-namespace Mvvm.Test.B
+//https://github.com/AutoFixture/AutoFixture/wiki/Cheat-Sheet
+namespace Mvvm.Test.C
 {
     public class MessageClick {}
     public class RelayCommand : ICommand
@@ -88,16 +90,24 @@ namespace Mvvm.Test.B
         [Fact]
         public void ChangePropertyMvvmUsingActor()
         {
-            var vm = new AkkaViewModel(Sys);
-            vm.Actor.Tell("Hello world");
+            var fixture = new Fixture();
+            fixture.Register<IActorRefFactory>(() => Sys);
+            var msg = fixture.Create<string>();
+            var vm = fixture.Create<AkkaViewModel>();
+            vm.Actor.Tell(msg);
             ExpectNoMsg();
-            vm.LabelText.Should().Be("Hello world");
+            vm.LabelText.Should().Be(msg);
         }
 
+        // AutoFixture는 IoC와 반대로 가장 작은 생성자를 선택한다.
+        // https://blog.ploeh.dk/2011/04/19/ConstructorstrategiesforAutoFixture/
         [Fact]
         public void ClickMvvmUsingActor()
         {
-            var vm = new AkkaViewModel(Sys, TestActor);
+            var fixture = new Fixture();
+            fixture.Register<IActorRefFactory>(() => Sys);
+            fixture.Register(() => TestActor);
+            var vm = fixture.Create<AkkaViewModel>();
             vm.ClickCommand.Execute(null);
             ExpectMsg<MessageClick>();
         }

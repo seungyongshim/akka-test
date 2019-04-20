@@ -7,12 +7,9 @@ using FluentAssertions.Extensions;
 using System.Windows.Input;
 using System;
 
-namespace PingPong.Test
+namespace Mvvm.Test.B
 {
-    public class MessageClick
-        {
-            
-        }
+    public class MessageClick {}
     public class RelayCommand : ICommand
     {
         readonly Action _action;

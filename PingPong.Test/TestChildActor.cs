@@ -70,6 +70,5 @@ namespace PingPong.Test
             motherActor.Tell("6076F8AE-164D-4687-9CA7-1D90F33EC6AF");
             ExpectMsg("6076F8AE-164D-4687-9CA7-1D90F33EC6AF-Child");
         }
-
     }
 }

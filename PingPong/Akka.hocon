@@ -1,9 +1,0 @@
-﻿akka {                
-
-    loglevel = DEBUG
-
-    actor {                
-
-    } # end akka.actor
-
-}

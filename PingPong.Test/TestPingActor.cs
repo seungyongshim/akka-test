@@ -5,6 +5,16 @@ using Xunit;
 
 namespace PingPong.Test
 {
+    public class PingActor : ReceiveActor
+    {
+        public PingActor()
+        {
+            Receive<string>(x =>
+            {
+                Sender.Tell(x);
+            });
+        }
+    }
     public class TestPingActor : TestKit
     {
         [Fact]

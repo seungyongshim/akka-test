@@ -16,7 +16,7 @@ namespace PingPong.Test
         {
             _childActor = childMaker(Context);
 
-            ReceiveAny(x =>
+            Receive<string>(x =>
                 _childActor.Tell(x)
             );
         }
@@ -26,14 +26,25 @@ namespace PingPong.Test
     public class TestMotherActor : TestKit
     {
         [Fact]
-        public void CreateChild()
+        public void CreateChildUsingTestActor()
         {
-            var child = CreateTestProbe();
-            var mother = ActorOfAsTestActorRef<MotherActor>(Props.Create(() => new MotherActor( x=>child.Ref  )));
+            var mother = ActorOfAsTestActorRef<MotherActor>(Props.Create(
+                () => new MotherActor( x=> TestActor )));
 
-            mother.Tell(false);
+            mother.Tell("705243F7-2C1B-4CEE-9B5F-80AE88649180");
 
-            ExpectMsgAnyOf(true);
+            ExpectMsg("705243F7-2C1B-4CEE-9B5F-80AE88649180");
+        }
+
+        [Fact]
+        public void CreateChildUsingProbe()
+        {
+            var childProbe = CreateTestProbe();
+            var mother = ActorOfAsTestActorRef<MotherActor>(Props.Create(
+                () => new MotherActor(x => childProbe.Ref)));
+
+            mother.Tell("705243F7-2C1B-4CEE-9B5F-80AE88649180");
+            childProbe.ExpectMsg("705243F7-2C1B-4CEE-9B5F-80AE88649180");
         }
     }
 }

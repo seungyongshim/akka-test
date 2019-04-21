@@ -4,7 +4,7 @@ using FluentAssertions;
 using System;
 using Xunit;
 
-namespace PingPong.Test
+namespace Test.ChildActor
 {
     public class MotherActor : ReceiveActor
     {

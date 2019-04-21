@@ -7,7 +7,7 @@ using FluentAssertions.Extensions;
 using System.Windows.Input;
 using System;
 
-namespace Mvvm.Test.B
+namespace Test.Mvvm.Level2
 {
     public class MessageClick {}
     public class RelayCommand : ICommand

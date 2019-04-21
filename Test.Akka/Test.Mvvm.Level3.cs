@@ -1,4 +1,5 @@
-﻿using Akka.Actor;
+﻿using Moq;
+using Akka.Actor;
 using Akka.TestKit.Xunit2;
 using System.ComponentModel;
 using Xunit;
@@ -10,7 +11,7 @@ using System;
 using AutoFixture.Kernel;
 
 //https://github.com/AutoFixture/AutoFixture/wiki/Cheat-Sheet
-namespace Mvvm.Test.C
+namespace Test.Mvvm.Level3
 {
     public class MessageClick {}
     public class RelayCommand : ICommand
@@ -49,10 +50,10 @@ namespace Mvvm.Test.C
             ClickCommand = new RelayCommand(() => Actor.Tell(new MessageClick()));
         }
 
-        public AkkaViewModel(IActorRefFactory actorSystem): this()
-        {
-            Actor = actorSystem.ActorOf(AkkaModelViewActor.Props(this));
-        }
+        //public AkkaViewModel(IActorRefFactory actorSystem): this()
+        //{
+        //    Actor = actorSystem.ActorOf(AkkaModelViewActor.Props(this));
+        //}
 
         public AkkaViewModel(IActorRefFactory actorSystem, IActorRef targetActor) : this()
         {
@@ -92,7 +93,11 @@ namespace Mvvm.Test.C
         public void ChangePropertyMvvmUsingActor()
         {
             var fixture = new Fixture();
-            fixture.Register<IActorRefFactory>(() => Sys);
+            var mock = new Mock<IActorRef>();
+
+            fixture.Inject(mock.Object);
+            fixture.Inject<IActorRefFactory>(Sys);
+
             var msg = fixture.Create<string>();
             var vm = fixture.Create<AkkaViewModel>();
             vm.Actor.Tell(msg);
@@ -109,8 +114,8 @@ namespace Mvvm.Test.C
             fixture.Customizations.Add(
                 new MethodInvoker(
                 new GreedyConstructorQuery()));
-            fixture.Register<IActorRefFactory>(() => Sys);
-            fixture.Register(() => TestActor);
+            fixture.Inject<IActorRefFactory>(Sys);
+            fixture.Inject(TestActor);
             var vm = fixture.Create<AkkaViewModel>();
             vm.ClickCommand.Execute(null);
             ExpectMsg<MessageClick>();

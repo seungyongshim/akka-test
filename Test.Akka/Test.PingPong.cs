@@ -3,7 +3,7 @@ using Akka.TestKit.Xunit2;
 using System;
 using Xunit;
 
-namespace PingPong.Test
+namespace Test.PingPong
 {
     public class PingActor : ReceiveActor
     {

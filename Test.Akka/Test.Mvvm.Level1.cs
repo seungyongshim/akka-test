@@ -7,7 +7,7 @@ using FluentAssertions.Extensions;
 using System.Windows.Input;
 using System;
 
-namespace Mvvm.Test.A
+namespace Test.Mvvm.Level1
 {
     public class AkkaViewModel : INotifyPropertyChanged
     {
